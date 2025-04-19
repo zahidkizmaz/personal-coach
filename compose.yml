@@ -1,0 +1,7 @@
+services:
+  user_service:
+    build: ./user_service/
+    ports:
+      - "3001:3001"
+    environment:
+      - USER_SERVICE_PORT=3001
