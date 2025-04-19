@@ -1,11 +1,11 @@
 use std::env;
 
 use axum::{
+    Router,
     extract::MatchedPath,
     http::{HeaderName, Request, StatusCode},
     response::{IntoResponse, Response},
     routing::get,
-    Router,
 };
 use tower::ServiceBuilder;
 use tower_http::request_id::{MakeRequestUuid, PropagateRequestIdLayer, SetRequestIdLayer};
