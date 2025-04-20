@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        flake-dirs: ["user_service"]
+        flake-dirs: ["user_service", "workout_service", "meal_service"]
     defaults:
       run:
         working-directory: ${{ matrix.flake-dirs }}

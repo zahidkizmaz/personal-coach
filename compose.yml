@@ -5,3 +5,15 @@ services:
       - "3001:3001"
     environment:
       - USER_SERVICE_PORT=3001
+  workout_service:
+    build: ./user_service/
+    ports:
+      - "3002:3002"
+    environment:
+      - WORKOUT_SERVICE_PORT=3002
+  meal_service:
+    build: ./user_service/
+    ports:
+      - "3003:3003"
+    environment:
+      - MEAL_SERVICE_PORT=3003

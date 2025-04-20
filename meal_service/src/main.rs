@@ -23,7 +23,7 @@ async fn main() {
         .init();
 
     // Get port from environment variable or use default
-    let port = env::var("USER_SERVICE_PORT")
+    let port = env::var("MEAL_SERVICE_PORT")
         .ok()
         .and_then(|p| p.parse().ok())
         .unwrap_or(3000);

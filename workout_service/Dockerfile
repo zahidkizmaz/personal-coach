@@ -23,4 +23,4 @@ ENTRYPOINT ["/sbin/tini", "--"]
 WORKDIR /app
 COPY --from=builder /tmp/nix-store-closure /nix/store
 COPY --from=builder /tmp/build/result /app
-CMD ["/app/bin/user_service"]
+CMD ["/app/bin/workout_service"]
