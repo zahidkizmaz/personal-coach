@@ -1,4 +1,4 @@
-pub mod api;
+pub mod app;
 mod create_user;
 
-pub use crate::api::api::app;
+pub use crate::api::app::app;

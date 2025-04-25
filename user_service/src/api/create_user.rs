@@ -7,7 +7,7 @@ use crate::{
     services::users::create_user,
 };
 
-use super::api::AppError;
+use super::app::AppError;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub enum GenderPayload {
