@@ -3,12 +3,14 @@ use axum::{
     extract::MatchedPath,
     http::{HeaderName, Request, StatusCode},
     response::{IntoResponse, Response},
-    routing::get,
+    routing::{get, post},
 };
 use tower::ServiceBuilder;
 use tower_http::request_id::{MakeRequestUuid, PropagateRequestIdLayer, SetRequestIdLayer};
 use tower_http::trace::TraceLayer;
 use tracing::{error, info_span};
+
+use super::create_user::create;
 
 const REQUEST_ID_HEADER: &str = "x-request-id";
 
@@ -48,8 +50,12 @@ pub fn app() -> Router {
         )
         // send headers from request to response headers
         .layer(PropagateRequestIdLayer::new(x_request_id));
+
+    let user_routes = Router::new().route("/create", post(create));
+    let api_routes = Router::new().nest("/users", user_routes);
     Router::new()
         .route("/", get(home))
+        .nest("/api", api_routes)
         .layer(request_id_and_logging_middleware)
 }
 

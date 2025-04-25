@@ -111,6 +111,7 @@
                 bacon
                 cargo-audit
                 cargo-udeps
+                hurl
                 rust-analyzer
               ]);
           };
