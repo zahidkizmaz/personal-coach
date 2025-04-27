@@ -1,9 +1,11 @@
 mod api;
 mod domain;
+mod infrastructure;
 mod log;
 mod services;
-use crate::api::app;
+mod test_utils;
 
+use crate::api::app;
 use std::env;
 use tracing::debug;
 

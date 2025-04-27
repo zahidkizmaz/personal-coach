@@ -6,8 +6,8 @@ Content-Type: application/json
     "first_name": "Test",
     "last_name": "User",
     "age": 25,
-    "weight": 70,
-    "height": 175,
+    "weight": 70.23,
+    "height": 175.1,
     "gender": "Male"
 }
 HTTP 201
@@ -16,5 +16,5 @@ jsonpath "$.username" == "testuser"
 jsonpath "$.first_name" == "Test"
 jsonpath "$.last_name" == "User"
 jsonpath "$.age" == 25
-jsonpath "$.weight" == 70.0
-jsonpath "$.height" == 175.0
+jsonpath "$.weight" == "70.23"
+jsonpath "$.height" == "175.1"

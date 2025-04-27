@@ -1,8 +1,11 @@
 use anyhow::Error;
 
-use crate::domain::users::User;
+use crate::{
+    domain::users::User,
+    infrastructure::repository::{FakeUserRepository, UserRepository},
+};
 
-pub fn create_user(user: User) -> Result<User, Error> {
+pub async fn create_user(user: User) -> Result<User, Error> {
     // Simulate user creation logic
-    Ok(user)
+    FakeUserRepository::default().create_user(user).await
 }

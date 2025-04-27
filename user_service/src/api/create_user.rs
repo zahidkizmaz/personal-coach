@@ -1,4 +1,5 @@
 use axum::{Json, extract, http::StatusCode, response::IntoResponse};
+use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
 use tracing::info;
 
@@ -37,8 +38,8 @@ pub struct UserPayload {
     pub first_name: String,
     pub last_name: String,
     pub age: u8,
-    pub weight: f32,
-    pub height: f32,
+    pub weight: Decimal,
+    pub height: Decimal,
     pub gender: GenderPayload,
 }
 impl From<User> for UserPayload {
@@ -72,7 +73,7 @@ impl From<UserPayload> for User {
 pub async fn create(
     extract::Json(payload): Json<UserPayload>,
 ) -> Result<impl IntoResponse, AppError> {
-    let payload = create_user(payload.into())?;
+    let payload = create_user(payload.into()).await?;
     info!("Created user: {:?}", payload);
     Ok((StatusCode::CREATED, Json(UserPayload::from(payload))))
 }
@@ -84,6 +85,7 @@ mod tests {
     use super::*;
     use axum::{http::Request, http::StatusCode};
     use http_body_util::BodyExt;
+    use rust_decimal::dec;
     use tower::ServiceExt;
 
     #[tokio::test]
@@ -93,8 +95,8 @@ mod tests {
             first_name: "Test".to_string(),
             last_name: "User".to_string(),
             age: 30,
-            weight: 70.0,
-            height: 175.0,
+            weight: dec!(70.0),
+            height: dec!(175.0),
             gender: GenderPayload::Male,
         };
         let json_payload = serde_json::to_string(&user_payload).unwrap();

@@ -19,8 +19,7 @@ pub fn setup_logging() {
                 .compact()
                 .with_file(true)
                 .with_line_number(true)
-                .with_target(false)
-                .json(),
+                .with_target(false),
         )
         .init();
 }
